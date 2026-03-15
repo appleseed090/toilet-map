@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import AddressAutocomplete from "./AddressAutocomplete";
 
 interface RestroomFormProps {
   restroomId?: string;
@@ -136,12 +137,23 @@ export default function RestroomForm({ restroomId }: RestroomFormProps) {
 
       <div>
         <label className={labelClass}>Address</label>
-        <input
+        <AddressAutocomplete
           className={inputClass}
           value={form.address}
-          onChange={(e) => setForm({ ...form, address: e.target.value })}
-          placeholder="123 Main St, Los Angeles, CA"
+          onChange={(v) => setForm({ ...form, address: v })}
+          onSelect={(s) =>
+            setForm({
+              ...form,
+              address: s.display,
+              latitude: String(s.lat),
+              longitude: String(s.lng),
+            })
+          }
+          placeholder="Start typing an address…"
         />
+        <p className="text-xs text-zinc-400 mt-1">
+          Selecting a suggestion auto-fills coordinates
+        </p>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
