@@ -90,7 +90,6 @@ export default function AddressAutocomplete({
 
   function pick(s: Suggestion) {
     onSelect(s);
-    onChange(s.display);
     setOpen(false);
   }
 
