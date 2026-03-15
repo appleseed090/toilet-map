@@ -51,7 +51,7 @@ export default function AddressAutocomplete({
         setSuggestions([]);
         setOpen(false);
       }
-    }, 300);
+    }, 500);
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
